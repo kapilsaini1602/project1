@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Record</title>
+
+</head>
+<body>
+<div class="container">
+
+<div class="row">
+    <h1 style="text-align: center" >Update Record</h1>
+</div>
+  <div class="row mt-5">
+  <div class="col-lg-4 col-lg-offset-4 mt-5"style="text-align: center;">
+
+      <form method="post"> {%csrf_token%}
+          {% for obj in obj %}
+  <div class="form-group">
+<!--    <label for="exampleInputEmail1">Name</label>-->
+    <input type="text" class="form-control-lg" id="exampleInputEmail1" name="name" placeholder="Enter Name" style="width:25%; border-radius:10px; height:28px;font-size: 15px;text-align: center;" value="{{obj.name}}" required>
+  </div><br>
+  <div class="form-group">
+<!--    <label for="exampleInputPassword1">Designation</label>-->
+    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter your Designation" name="designation" style="width:25%; border-radius:10px; height:28px;text-align: center;" value="{{obj.Designation}}" required>
+  </div> <br>
+        <div class="form-group">
+<!--    <label for="exampleInputnumber">Contact</label>-->
+   <input type="number" class="form-control" id="exampleInputnumber" placeholder="Enter your Contact Number" name="contact" style="width:25%; border-radius:10px; height:28px;text-align: center;" value="{{obj.contact}}" required>
+  </div><br>
+<button type="submit"   style="  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  width:25%;
+  text-align: center;
+  height:35px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;">Update</button>
+          {%endfor%}
+</form>
+        {% if message %} {{message}} {%endif%}
+
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+    $('#dataTable).DataTable();
+    });
+</script>
+</body>
+
+</html>

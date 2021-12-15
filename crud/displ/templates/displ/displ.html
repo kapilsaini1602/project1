@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+
+    <title>Existing Records</title>
+  </head>
+  <body>
+  <h1 style="text-align: center">Existing Records</h1>
+<table class=" mt-5 table table-striped table-bordered" id="myTable">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Designation</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Image</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  {% for k in disp %}
+  <tbody>
+    <tr>
+      <td scope="row">{{k.id}}</td>
+      <td>{{k.name}}</td>
+      <td>{{k.Designation}}</td>
+      <td>{{k.contact}}</td>
+      <td>{% if 'k.image' %}<a href={{k.image.url}} target="_blank"><img src="{{ k.image.url}}" alt="connect" style="max-height:100px"></a>{%else%} No Image {%endif%}</td>
+      <td>
+<!--        <a href="#" class="btn btn-success btn-sm active" role="button" aria-pressed="true">Insert</a>-->
+        <a href="../../update/?id={{k.id}}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Update</a>
+        <a href="../../delete/?id={{k.id}}" class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Delete</a>
+        <a href={{k.image.url}} class="btn btn-primary btn-sm active" role="button" aria-pressed="true" target="_blank">View Image</a>
+      </td>
+    </tr>
+
+  </tbody>
+  {%endfor%}
+{% if obj %}
+      <td><img src="{{ obj.image}}" alt="connect" style="max-height:300px">   </td>
+    {%endif%}
+</table>
+          <div class="d-grid gap-2">
+       <center> <a href="{% url 'insert' %}" class="btn btn-success btn-sm active" role="button" aria-pressed="true"><button class="btn btn-primary text-center" type="button" style="width:250px;">Add New Record</button> </a></center>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+  </body>
+</html>
